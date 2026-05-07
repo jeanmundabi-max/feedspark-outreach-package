@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrew's Special Package — MDB Growth Capital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--or:#FF6100;--or-h:#E65500;--ne:#FFCC89;--ne-d:rgba(255,204,137,.1);
+--dk:#1a1008;--dk-s:#241709;--wh:#fff;--of:#f9fafb;--lt:#f3f4f6;
+--g3:#d1d5db;--g4:#9ca3af;--g5:#6b7280;--g6:#4b5563;
+--red:#ef4444;--grn:#22c55e;--amb:#f59e0b;
+--f:'Outfit',system-ui,sans-serif;--mx:880px;
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;font-size:20px}
+body{font-family:var(--f);color:var(--dk);line-height:1.65;background:var(--wh);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.rv.on{opacity:1;transform:none}
+.d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}
+
+/* Side Nav */
+.sn{position:fixed;left:16px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:8px}
+.sn a{width:8px;height:8px;border-radius:50%;background:var(--g3);display:block;transition:all .25s;position:relative}
+.sn a.ac{background:var(--or);transform:scale(1.5)}
+.sn a::after{content:attr(data-t);position:absolute;left:18px;top:50%;transform:translateY(-50%);font-size:.6rem;color:var(--g5);white-space:nowrap;opacity:0;transition:opacity .15s;pointer-events:none;font-weight:500}
+.sn a:hover::after{opacity:1}
+@media(max-width:900px){.sn{display:none}}
+
+/* Layout */
+.w{max-width:var(--mx);margin:0 auto;padding:0 24px}
+section{padding:80px 0}
+@media(max-width:640px){section{padding:56px 0}.w{padding:0 16px}}
+.dark{background:var(--dk);color:var(--wh)}
+.dark h1,.dark h2,.dark h3,.dark p,.dark li,.dark td,.dark th,.dark strong{color:var(--wh)}
+.alt{background:var(--of)}
+
+/* Typography */
+h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:16px}
+h2{font-size:clamp(1.3rem,3vw,1.8rem);font-weight:700;line-height:1.12;letter-spacing:-.02em;margin-bottom:12px}
+h3{font-size:1rem;font-weight:700;margin-bottom:8px}
+p{margin-bottom:14px;font-size:.95rem}
+.label{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--or);margin-bottom:6px}
+.dark .label{color:var(--ne)}
+.sub{color:var(--g5);font-size:.92rem;line-height:1.6}
+.dark .sub{color:var(--g4)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:8px;font:600 .88rem/1 var(--f);border:0;cursor:pointer;transition:all .15s}
+.btn:active{transform:scale(.97)}
+.b-or{background:var(--or);color:var(--wh)}.b-or:hover{background:var(--or-h)}
+.b-ne{background:var(--ne);color:var(--dk);font-weight:700}.b-ne:hover{background:#f0b860}
+.b-gh{background:transparent;color:var(--wh);border:1.5px solid rgba(255,255,255,.2)}.b-gh:hover{border-color:rgba(255,255,255,.5)}
+
+/* Top Banner */
+.tb{background:var(--dk);color:var(--g4);text-align:center;padding:10px 16px;font-size:.7rem;font-weight:500;border-bottom:1px solid rgba(255,255,255,.06)}
+.tb strong{color:var(--ne)}
+
+/* Hero */
+.hero{min-height:90vh;display:flex;align-items:center;padding-top:40px;padding-bottom:60px}
+.hero h1{font-size:clamp(2rem,5vw,3rem)}
+.hero h1 em{font-style:normal;color:var(--or)}
+.vid-box{width:100%;aspect-ratio:16/9;background:var(--dk-s);border:1px solid rgba(255,255,255,.08);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:24px 0;cursor:pointer;position:relative;overflow:hidden}
+.vid-box::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at center,rgba(255,204,137,.03),transparent 60%)}
+.pb{width:60px;height:60px;border-radius:50%;background:var(--or);display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.pb:hover{transform:scale(1.06)}
+.pb::after{content:'';border-style:solid;border-width:9px 0 9px 16px;border-color:transparent transparent transparent var(--wh);margin-left:3px}
+.callout{background:rgba(255,204,137,.06);border-left:3px solid var(--ne);padding:18px 22px;border-radius:0 8px 8px 0;margin:18px 0}
+.dark .callout{background:rgba(255,204,137,.08)}
+.callout p{margin-bottom:6px;font-size:.9rem}
+.callout p:last-child{margin-bottom:0}
+.wild{font-size:1.15rem;font-weight:700;color:var(--ne)}
+
+/* Cards Grid */
+.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:20px 0}
+.cd{background:var(--wh);border:1px solid #e5e7eb;border-radius:10px;padding:22px;transition:border-color .15s}
+.cd:hover{border-color:var(--or)}
+.cd .num{width:28px;height:28px;background:var(--or);color:var(--wh);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;margin-bottom:10px}
+
+/* CTA Grid */
+.ctg{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+@media(max-width:600px){.ctg{grid-template-columns:1fr}}
+.ctc{padding:28px 22px;border-radius:10px;text-align:center;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04)}
+.ctc h3{margin-bottom:6px}.ctc p{font-size:.85rem;opacity:.75;margin-bottom:14px}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.82rem}
+th{text-align:left;padding:10px 14px;background:var(--or);color:var(--wh);font-weight:600;font-size:.7rem;letter-spacing:.04em;text-transform:uppercase}
+th:first-child{border-radius:6px 0 0 0}th:last-child{border-radius:0 6px 0 0}
+td{padding:10px 14px;border-bottom:1px solid #e5e7eb;vertical-align:top}
+tr:nth-child(even){background:var(--of)}
+.impact{color:var(--grn);font-weight:700}
+.total-row{background:rgba(255,97,0,.04)!important;font-weight:700}
+.dark table th{background:rgba(255,255,255,.1)}
+.dark table td{border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.85)}
+.dark table tr:nth-child(even){background:rgba(255,255,255,.03)}
+
+/* Traffic Lights */
+.tl{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:100px;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.tl.red{background:rgba(239,68,68,.1);color:var(--red)}
+.tl.yel{background:rgba(245,158,11,.1);color:var(--amb)}
+.tl.grn{background:rgba(34,197,94,.1);color:var(--grn)}
+.tl .dot{width:8px;height:8px;border-radius:50%}
+.tl.red .dot{background:var(--red)}.tl.yel .dot{background:var(--amb)}.tl.grn .dot{background:var(--grn)}
+
+/* Biggest Leak */
+.bl{background:var(--dk);color:var(--wh);padding:22px;border-radius:10px;margin:20px 0;border-left:4px solid var(--red)}
+.bl h3{color:var(--red);font-size:.9rem;margin-bottom:6px}
+.bl p{color:rgba(255,255,255,.8);margin-bottom:0;font-size:.88rem}
+
+/* Pillars */
+.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:20px 0}
+.pl{padding:20px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.pl .pn{font-size:1.6rem;font-weight:800;color:var(--ne);line-height:1;margin-bottom:6px}
+.pl h3{font-size:.88rem;margin-bottom:4px}
+.pl p{font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:0}
+.tagline{font-style:italic;color:var(--g4);margin-top:20px;font-size:.95rem;text-align:center}
+
+/* Steps */
+.steps{counter-reset:st;margin:20px 0}
+.stp{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid #e5e7eb;align-items:flex-start}
+.stp:last-child{border-bottom:0}
+.stp::before{counter-increment:st;content:counter(st);width:32px;height:32px;min-width:32px;background:var(--or);color:var(--wh);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;margin-top:2px}
+.stp-c h3{font-size:.88rem;margin-bottom:2px}
+.stp-c p{font-size:.85rem;color:var(--g5);margin-bottom:0}
+
+/* Week Cards */
+.wk{padding:16px 20px;border-radius:8px;background:var(--wh);border:1px solid #e5e7eb;border-left:3px solid var(--or);margin-bottom:12px}
+.wk .wn{font-size:.68rem;font-weight:700;color:var(--or);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.wk p{font-size:.85rem;color:var(--g5);margin-bottom:0}
+.qw{background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.15);border-radius:8px;padding:16px 20px;margin-top:16px}
+.qw h3{color:var(--grn);margin-bottom:8px;font-size:.88rem}
+.qw li{font-size:.85rem;margin-bottom:6px;list-style:none;padding-left:20px;position:relative}
+.qw li::before{content:'+';position:absolute;left:0;color:var(--grn);font-weight:700}
+
+/* FAQ */
+.fq{border-bottom:1px solid #e5e7eb}
+.fq-q{padding:14px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.88rem;user-select:none;gap:10px}
+.fq-q .ic{width:20px;height:20px;min-width:20px;border-radius:5px;background:var(--of);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--g5);transition:transform .25s,background .25s}
+.fq.open .fq-q .ic{transform:rotate(45deg);background:var(--ne-d);color:var(--dk)}
+.fq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:.85rem;color:var(--g5);line-height:1.7}
+.fq.open .fq-a{max-height:400px;padding-bottom:14px}
+
+/* About */
+.ab{display:flex;gap:20px;align-items:flex-start;margin:16px 0}
+@media(max-width:600px){.ab{flex-direction:column;align-items:center;text-align:center}}
+.av{width:64px;height:64px;border-radius:50%;background:var(--or);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--wh);font-weight:800;min-width:64px}
+.ab-i h3{font-size:1rem;margin-bottom:1px}
+.ab-i .role{color:var(--g5);font-size:.82rem;margin-bottom:8px}
+.ln-btn{display:inline-block;padding:6px 16px;border-radius:5px;background:var(--or);color:var(--wh);font-size:.78rem;font-weight:600;margin-top:6px;transition:background .15s}
+.ln-btn:hover{background:var(--or-h)}
+
+/* Offer list */
+.ol li{padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.88rem;list-style:none;padding-left:24px;position:relative;color:rgba(255,255,255,.85)}
+.ol li::before{content:'+';position:absolute;left:0;color:var(--ne);font-weight:700;font-size:1rem}
+
+/* Footer */
+footer{text-align:center;padding:20px;font-size:.7rem;color:var(--g4);border-top:1px solid rgba(255,255,255,.06)}
+.dark footer{border-top-color:rgba(255,255,255,.06)}
+
+/* Metric cards */
+.mc{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:16px 0}
+.mt{text-align:center;padding:22px 14px;border-radius:10px;background:var(--of);border:1px solid #e5e7eb}
+.mt .mn{font-size:2rem;font-weight:800;color:var(--or);line-height:1}
+.mt .ml{font-size:.72rem;color:var(--g5);margin-top:4px}
+.dark .mt{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}
+.dark .mt .ml{color:var(--g4)}
+
+/* Timeline */
+.tl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:16px 0}
+.tl-card{border-radius:10px;overflow:hidden;background:var(--wh);border:1px solid #e5e7eb}
+.tl-hd{padding:10px 16px;font-weight:700;font-size:.82rem;color:var(--wh);background:var(--or)}
+.tl-card ul{padding:14px 16px 16px 30px;font-size:.82rem;color:var(--g5)}
+.tl-card li{margin-bottom:4px}
+
+/* Case Study */
+.cs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:16px 0}
+.cs-p{padding:20px;border-radius:10px}
+.cs-p.ctx{background:#f1f5f9}
+.cs-p.act{background:var(--wh);border:1px solid #e5e7eb}
+.cs-p.res{background:rgba(255,97,0,.04);border:1px solid rgba(255,97,0,.12)}
+.cs-p h3{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--g5);margin-bottom:8px}
+
+/* Method Flow */
+.mf{display:flex;gap:6px;margin:20px 0;overflow-x:auto}
+@media(max-width:700px){.mf{flex-direction:column}}
+.ms{flex:1;min-width:120px;padding:16px;border-radius:8px;background:var(--of);border:1px solid #e5e7eb;text-align:center}
+.ms .msn{width:24px;height:24px;background:var(--or);color:var(--wh);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;margin:0 auto 8px}
+.ms h3{font-size:.78rem;margin-bottom:2px}
+.ms p{font-size:.7rem;color:var(--g5);margin-bottom:0}
+.ma{display:flex;align-items:center;color:var(--g3);font-size:1rem}
+@media(max-width:700px){.ma{justify-content:center;transform:rotate(90deg)}}
+
+/* Warning banner */
+.warn{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:8px;padding:16px 20px;margin:16px 0}
+.warn p{font-size:.85rem;color:var(--red);margin-bottom:0;font-weight:600}
+
+/* Vertical Priority Matrix */
+.vpm{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:16px 0}
+.vp-card{padding:18px;border-radius:10px;border:1px solid #e5e7eb;background:var(--wh);text-align:center}
+.vp-card.top{border-color:var(--or);border-width:2px;background:rgba(255,97,0,.02)}
+.vp-card .vp-rank{font-size:1.6rem;font-weight:800;color:var(--or);line-height:1}
+.vp-card .vp-name{font-size:.88rem;font-weight:700;margin:6px 0 4px}
+.vp-card .vp-score{font-size:.72rem;color:var(--g5)}
+</style>
+</head>
+<body>
+
+<!-- TOP BANNER -->
+<div class="tb">Built for <strong>Andrew Culpan</strong>, CEO and Founder at FeedSpark — by Jean Mundabi Fala, MDB Growth Capital</div>
+
+<!-- SIDE NAV -->
+<nav class="sn" id="sideNav">
+<a href="#s1" data-t="Package" class="ac"></a><a href="#s2" data-t="Inside"></a><a href="#s3" data-t="Why Now"></a><a href="#s4" data-t="Who Built This"></a><a href="#s5" data-t="The Gift"></a><a href="#s6" data-t="Get Started"></a><a href="#s7" data-t="Attraction"></a><a href="#s8" data-t="Alignment"></a><a href="#s9" data-t="Activation"></a><a href="#s10" data-t="Money Levers"></a><a href="#s11" data-t="Funnel Cascade"></a><a href="#s12" data-t="Full Funnel"></a><a href="#s13" data-t="Competitors"></a><a href="#s14" data-t="The Gap"></a><a href="#s15" data-t="90 Day Plan 1"></a><a href="#s16" data-t="90 Day Plan 2"></a><a href="#s17" data-t="Email Samples"></a><a href="#s18" data-t="Key Results"></a><a href="#s19" data-t="Case Study"></a><a href="#s20" data-t="Growth Loops"></a><a href="#s21" data-t="FAQ"></a><a href="#s22" data-t="About"></a><a href="#s23" data-t="The Offer"></a><a href="#s24" data-t="Get Started"></a>
+</nav>
+
+<!-- CARD 1: HERO -->
+<section class="dark hero" id="s1"><div class="w">
+<span class="label rv">MDB Growth Capital</span>
+<h1 class="rv d1">Andrew's Special <em>Commercial Growth</em> Package</h1>
+<p class="sub rv d2">How FeedSpark Turns 18 Years of Founder Led Growth Into a Predictable New Business Engine With Measurable Pipeline</p>
+<div class="vid-box rv d3" id="videoEmbed"><div class="pb"></div></div>
+<div class="warn rv">
+<p>Do Not Skip The Video Above. It is a personalised walkthrough made for you and FeedSpark only.</p>
+</div>
+<div class="callout rv">
+<p><strong>How This Document Can Help FeedSpark</strong></p>
+<p>This doc was crafted solely for you, Andrew. Every detail fits FeedSpark's commercial growth challenge perfectly. It is the exact go to market plan to turn 18 years of founder led growth into a predictable new business engine with measurable pipeline.</p>
+<p class="wild">Our wild goal? Build FeedSpark a commercial growth system that turns your 2,500 brands, 250 billion products, and Selfridges calibre client base into a repeatable new business machine that generates enterprise e-commerce leads without Andrew personally knowing the buyer.</p>
+</div>
+</div></section>
+
+<!-- CARD 2: WHAT'S INSIDE -->
+<section id="s2"><div class="w">
+<span class="label rv">What You Get</span>
+<h2 class="rv">What Is Inside Your Package?</h2>
+<div class="cg">
+<div class="cd rv"><div class="num">1</div><h3>Commercial Growth Diagnosis</h3><p>Where FeedSpark's new business leaks before it becomes pipeline. Your website, content, competitive presence, and sales motion mapped layer by layer against the Attraction, Alignment, and Activation framework. Red, Yellow, and Green grades for each.</p></div>
+<div class="cd rv d1"><div class="num">2</div><h3>Competitive Positioning Analysis</h3><p>FeedSpark vs Feedonomics vs DataFeedWatch vs Channable vs GoDataFeed vs Productsup. Where you win. Where you are invisible. Where the gap is costing you enterprise deals.</p></div>
+<div class="cd rv d2"><div class="num">3</div><h3>Case Study Activation Strategy</h3><p>How to turn Selfridges, Samsung, and Harvey Nichols logos into revenue proof that closes deals. The specific metrics to extract and where to publish them.</p></div>
+<div class="cd rv d3"><div class="num">4</div><h3>Narrative Reclamation Plan</h3><p>Feedonomics has a page called "FeedSpark best alternative" ranking for your brand name. The plan to take your story back with comparison content, G2 reviews, and thought leadership.</p></div>
+<div class="cd rv"><div class="num">5</div><h3>Sample Cold Email Sequences</h3><p>Two graded email sequences targeting e-commerce PPC managers and agency heads of paid media. Ready to send. Scored against the Predicted Success Score methodology.</p></div>
+<div class="cd rv d1"><div class="num">6</div><h3>Revenue Gap Analysis</h3><p>The cost of running a 50 person company on founder referrals alone: estimated 50 to 70% of addressable market unreachable. Mapped by channel.</p></div>
+<div class="cd rv d2"><div class="num">7</div><h3>90 Day Commercial Launch Plan</h3><p>Week by week execution from case study activation through first outbound pipeline. Built so the Head of Commercial Growth walks into a functioning system.</p></div>
+</div>
+</div></section>
+
+<!-- CARD 3: WHY FEEDSPARK -->
+<section class="alt" id="s3"><div class="w">
+<span class="label rv">The Research</span>
+<h2 class="rv">Why FeedSpark? Why Now?</h2>
+<div class="callout rv"><p><strong>Signal 1: The inflection point hire.</strong><br>FeedSpark posted the first dedicated commercial role in 18 years. Head of Commercial Growth, reporting directly to the founders. Not a marketing coordinator. Not a junior hire. Someone to own "end to end sales cycle, outbound, content, paid media, and forecasting." That is building a commercial function from zero. That is a founder admitting the relationship model has a ceiling.</p></div>
+<div class="callout rv d1"><p><strong>Signal 2: The competitor narrative theft.</strong><br>Feedonomics, a BigCommerce owned platform, has a page titled "FeedSpark best alternative" that ranks for your brand name. When prospects search "FeedSpark," a competitor is telling them why they should choose someone else. FeedSpark has no comparison content, no G2 profile, and no published case studies with metrics. The competition is writing FeedSpark's story.</p></div>
+<div class="callout rv d2"><p><strong>Signal 3: The proof paradox.</strong><br>250 billion products optimised. £3.5 billion in managed Google spend. Selfridges, Samsung, Harvey Nichols, Dunelm, Fred Perry, Wickes. That is an extraordinary client roster. But there is not a single published case study showing what FeedSpark actually achieved for any of them. The logos say "impressive." The absence of metrics says "prove it." In a competitive evaluation against Feedonomics, proof beats presence every time.</p></div>
+<p class="rv d3">Andrew, the service is exceptional. The domain expertise is unmatched. The commercial function to take that excellence to market is the missing piece. That is why this package exists.</p>
+</div></section>
+
+<!-- CARD 4: WHO BUILT THIS -->
+<section id="s4"><div class="w">
+<span class="label rv">Credibility</span>
+<h2 class="rv">Three Things Worth Knowing About How This Was Built</h2>
+<div class="mc rv d1">
+<div class="mt"><div class="mn">£30M</div><div class="ml">Pipeline generated at Santander in 30 days</div></div>
+<div class="mt"><div class="mn">15%</div><div class="ml">SMB revenue growth at BT/EE</div></div>
+<div class="mt"><div class="mn">£40M</div><div class="ml">Marketing budget managed at Santander</div></div>
+</div>
+<div class="callout rv d2"><p><strong>Enterprise scale, not agency guesswork.</strong> I spent 2 plus years at Santander managing marketing effectiveness across a £30 to 40 million budget, including a hyper targeted campaign that generated a £30 million Private Banking pipeline in 30 days. Before that, 3 plus years at BT leading performance marketing for SMB with 15% revenue growth. I understand what commercial growth looks like when it works at scale.</p></div>
+<div class="callout rv d3"><p><strong>The research is real.</strong> I audited your entire website, mapped your competitive landscape (Feedonomics, DataFeedWatch, Channable, GoDataFeed, Productsup), read your FeedHero platform pages, analysed your blog content cadence, reverse engineered every capability gap from your Head of Commercial Growth job description, and discovered the Feedonomics comparison page targeting your brand traffic. This took hours, not minutes.</p></div>
+<p class="rv" style="font-size:.95rem;font-weight:600;margin-top:12px">The package itself is the proof. If this is what I give away for free, imagine what happens when we actually work together.</p>
+</div></section>
+
+<!-- CARD 5: THE GIFT -->
+<section class="alt" id="s5"><div class="w">
+<span class="label rv">The Gift</span>
+<h2 class="rv">What FeedSpark Gets at No Cost</h2>
+<p class="rv d1">A complete <strong>Commercial Growth Audit and Launch Playbook</strong> showing exactly what the Head of Commercial Growth needs to build from day one.</p>
+<div class="steps rv d2">
+<div class="stp"><div class="stp-c"><h3>Full Attraction, Alignment, Activation Diagnostic</h3><p>Your current commercial presence scored across every channel</p></div></div>
+<div class="stp"><div class="stp-c"><h3>Case Study Activation Strategy</h3><p>Turning Selfridges, Samsung, and Harvey Nichols into revenue proof</p></div></div>
+<div class="stp"><div class="stp-c"><h3>Competitive Positioning Plan</h3><p>Reclaiming your narrative from Feedonomics</p></div></div>
+<div class="stp"><div class="stp-c"><h3>G2 Launch Plan</h3><p>Getting FeedSpark visible in the buyer review ecosystem</p></div></div>
+<div class="stp"><div class="stp-c"><h3>Outbound Programme Design</h3><p>Targeting e-commerce PPC teams and agency heads of paid media</p></div></div>
+<div class="stp"><div class="stp-c"><h3>Content Engine Blueprint</h3><p>Feed management thought leadership that drives organic traffic</p></div></div>
+<div class="stp"><div class="stp-c"><h3>90 Day Commercial Launch Plan</h3><p>Weekly milestones the new hire can execute from day one</p></div></div>
+</div>
+<p class="rv d3" style="font-size:.88rem;color:var(--g5)">This is not a proposal. It is a working playbook. You could hand this to your Head of Commercial Growth on their first morning and they would know exactly what to build.</p>
+</div></section>
+
+<!-- CARD 6: CTA -->
+<section class="dark" id="s6"><div class="w" style="text-align:center">
+<h2 class="rv">2 Options To Get Started</h2>
+<div class="ctg rv d1">
+<div class="ctc"><h3>Just Reply</h3><p>Write back with any questions about the audit findings. I will send you the complete commercial growth plan in a format your team can action immediately.</p><a class="btn b-gh" href="mailto:">Reply to Email</a></div>
+<div class="ctc"><h3>Book A Call</h3><p>15 minutes. I will walk you through the audit findings live and show you exactly how the first 90 days would work for FeedSpark.</p><a class="btn b-ne" href="https://cal.com/jean-m-8f4kbr/15min" target="_blank">Book 15 Minutes</a></div>
+</div>
+<p class="rv d2" style="margin-top:16px;font-size:.82rem;color:var(--g4)">Either way, the audit is yours to keep. Use it however serves FeedSpark best.</p>
+</div></section>
+
+<!-- CARD 7: AAA — ATTRACTION -->
+<section id="s7"><div class="w">
+<span class="label rv">Commercial Growth Audit</span>
+<h2 class="rv">Layer 1: Attraction — How FeedSpark Gets Attention Today</h2>
+<div class="rv"><span class="tl red"><span class="dot"></span>RED — Attraction Score: 3 out of 10</span></div>
+<table class="rv d1" style="margin-top:16px">
+<thead><tr><th>Signal</th><th>Status</th><th>Finding</th></tr></thead>
+<tbody>
+<tr><td><strong>SEO Content</strong></td><td><span class="tl yel" style="font-size:.65rem"><span class="dot"></span>Low Volume</span></td><td>Blog has educational content (feed optimisation, Google Shopping) but inconsistent cadence. Not enough to rank for buyer searches.</td></tr>
+<tr><td><strong>Paid Search</strong></td><td><span class="tl red" style="font-size:.65rem"><span class="dot"></span>Not Active</span></td><td>E-commerce buyers searching "feed management agency" do not find FeedSpark through paid channels.</td></tr>
+<tr><td><strong>Paid Social (LinkedIn)</strong></td><td><span class="tl red" style="font-size:.65rem"><span class="dot"></span>Not Active</span></td><td>PPC managers and e-commerce leads are on LinkedIn. No ads running.</td></tr>
+<tr><td><strong>Competitive Content</strong></td><td><span class="tl red" style="font-size:.65rem"><span class="dot"></span>None</span></td><td>Feedonomics has a "FeedSpark best alternative" page. FeedSpark has no comparison content at all.</td></tr>
+<tr><td><strong>Review Platforms</strong></td><td><span class="tl red" style="font-size:.65rem"><span class="dot"></span>Not Present</span></td><td>No G2, Capterra, or Trustpilot. Invisible in the buyer review ecosystem.</td></tr>
+<tr><td><strong>PR and Media</strong></td><td><span class="tl red" style="font-size:.65rem"><span class="dot"></span>Minimal</span></td><td>No press coverage or thought leadership visible.</td></tr>
+<tr><td><strong>Referrals</strong></td><td><span class="tl grn" style="font-size:.65rem"><span class="dot"></span>Active</span></td><td>18 years of founder relationships. Primary growth channel.</td></tr>
+</tbody>
+</table>
+<div class="callout rv d2"><p><strong>Analysis:</strong> FeedSpark's awareness depends entirely on Andrew Culpan's network and word of mouth. An e-commerce manager evaluating feed management vendors will find Feedonomics (BigCommerce backed), DataFeedWatch (published pricing, G2 reviews), and Channable (self serve). FeedSpark will be invisible unless someone in their network recommends them.</p></div>
+</div></section>
+
+<!-- CARD 8: AAA — ALIGNMENT -->
+<section class="alt" id="s8"><div class="w">
+<h2 class="rv">Layer 2: Alignment — Converting Interest to Conversations</h2>
+<div class="rv"><span class="tl yel"><span class="dot"></span>YELLOW — Alignment Score: 4 out of 10</span></div>
+<table class="rv d1" style="margin-top:16px">
+<thead><tr><th>Signal</th><th>Status</th><th>Finding</th></tr></thead>
+<tbody>
+<tr><td><strong>Website</strong></td><td><span class="tl grn" style="font-size:.65rem"><span class="dot"></span>Well Designed</span></td><td>Clear value proposition, good product pages, client logos displayed.</td></tr>
+<tr><td><strong>Lead Capture</strong></td><td><span class="tl red" style="font-size:.65rem"><span class="dot"></span>Contact Form Only</span></td><td>"Speak to an expert" is the only call to action. No gated content, no feed audit tools, no calculators.</td></tr>
+<tr><td><strong>Case Studies</strong></td><td><span class="tl red" style="font-size:.65rem"><span class="dot"></span>Logos Only</span></td><td>Selfridges, Samsung, Harvey Nichols logos exist. No published metrics or ROI proof.</td></tr>
+<tr><td><strong>Pricing</strong></td><td><span class="tl red" style="font-size:.65rem"><span class="dot"></span>Not Visible</span></td><td>Managed service pricing requires inquiry. No indicative ranges published.</td></tr>
+<tr><td><strong>Lead Nurture</strong></td><td><span class="tl red" style="font-size:.65rem"><span class="dot"></span>None</span></td><td>No email sequences after initial inquiry. No retargeting. No content drip.</td></tr>
+</tbody>
+</table>
+<div class="bl rv d2">
+<h3>THE BIGGEST ALIGNMENT GAP</h3>
+<p>Logos without case studies. A prospect sees Samsung and thinks "impressive." Then asks "what results did you get for Samsung?" and there is no answer on the website. Feedonomics has detailed case studies with ROAS improvements. FeedSpark has logos. In a competitive evaluation, proof beats presence every time.</p>
+</div>
+<div class="callout rv d3">
+<p><strong>Funnel Leak Map:</strong></p>
+<p style="font-size:.82rem;font-family:monospace;line-height:1.8">VISITOR &rarr; Good Website &rarr; Speak to an Expert Form &rarr; ??? &rarr; Sales<br><br>Leak 1: No competitive content. Feedonomics owns the comparison narrative<br>Leak 2: Logos without proof. Samsung and Selfridges are impressive. But where are the ROAS numbers?<br>Leak 3: No nurture after inquiry. No email sequences. No retargeting. No content drip<br>Leak 4: No outbound. 50 person company with zero outbound motion</p>
+</div>
+</div></section>
+
+<!-- CARD 9: AAA — ACTIVATION -->
+<section id="s9"><div class="w">
+<h2 class="rv">Layer 3: Activation — How FeedSpark Closes</h2>
+<div class="rv"><span class="tl grn"><span class="dot"></span>GREEN — Activation Score: 7 out of 10</span></div>
+<div class="cg rv d1">
+<div class="cd" style="border-left:3px solid var(--grn)"><h3>What Works</h3>
+<p>Fully managed service (genuine differentiator vs DIY tools like DataFeedWatch and Channable). FeedHero platform (proprietary, AI plus rules plus experts). 80% support tickets closed within 24 hours. 20 plus years domain expertise. Deep industry knowledge with high switching cost.</p></div>
+<div class="cd" style="border-left:3px solid var(--red)"><h3>What Is Missing</h3>
+<p>No case studies quantifying results for prospects to reference. No competitive battle cards for sales conversations. No documented sales process or collateral. The Head of Commercial Growth has no sales enablement to work with on day one.</p></div>
+</div>
+<div class="bl rv d2">
+<h3>THE BIGGEST LEAK</h3>
+<p>No commercial function in a company that serves 2,500 brands. FeedSpark has the best managed feed management service in the market. 250 billion products optimised. £3.5 billion in Google spend managed. Selfridges, Samsung, Harvey Nichols. But nobody outside Andrew's network knows this. Because there is no outbound. No content engine. No G2 profile. No comparison pages. No case studies with numbers. No sales collateral. No pipeline forecasting. The service wins when prospects engage. The problem is not enough prospects are engaging. And the ones who search "feed management" are being intercepted by Feedonomics before they ever find FeedSpark.</p>
+</div>
+</div></section>
+
+<!-- CARD 10: MONEY LEVERS -->
+<section class="alt" id="s10"><div class="w">
+<span class="label rv">High Impact Fixes</span>
+<h2 class="rv">5 Money Levers for FeedSpark</h2>
+<p class="rv d1">Each lever addresses a specific gap identified in the audit.</p>
+<table class="rv d2">
+<thead><tr><th>Lever</th><th>Current State</th><th>Fix</th><th>Est. Impact</th></tr></thead>
+<tbody>
+<tr><td><strong>Case Studies</strong></td><td>Logos only</td><td>3 named case studies with ROAS and revenue metrics (Selfridges, Samsung, Harvey Nichols calibre)</td><td class="impact">Est. 2x close rate improvement (proof over promises)</td></tr>
+<tr><td><strong>G2 Profile</strong></td><td>Not present</td><td>Launch G2 listing, collect 20 plus reviews from existing clients</td><td class="impact">Est. Category visibility, buyer shortlist inclusion</td></tr>
+<tr><td><strong>Comparison Pages</strong></td><td>None (Feedonomics owns this)</td><td>"FeedSpark vs Feedonomics" and "FeedSpark vs DataFeedWatch" pages</td><td class="impact">Est. Recapture brand search traffic, 10 to 20 high intent visits per month</td></tr>
+<tr><td><strong>Content Engine</strong></td><td>Inconsistent blog</td><td>Weekly thought leadership on feed optimisation, Google Shopping, Performance Max</td><td class="impact">Est. 300 to 500 organic visitors per month within 6 months</td></tr>
+<tr><td><strong>Outbound Programme</strong></td><td>None</td><td>LinkedIn and email outreach targeting e-commerce PPC teams and agency paid media leads</td><td class="impact">Est. 10 to 15 qualified conversations per month</td></tr>
+<tr class="total-row"><td colspan="3"><strong>Combined Estimated Impact</strong></td><td class="impact">Predictable new business revenue independent of founder referrals</td></tr>
+</tbody>
+</table>
+</div></section>
+
+<!-- CARD 11: FUNNEL CASCADE -->
+<section id="s11"><div class="w">
+<span class="label rv">Funnel Cascade</span>
+<h2 class="rv">How FeedSpark Gets More Clients and Converts Them</h2>
+
+<h3 class="rv" style="margin-top:16px">Top of Funnel: Getting Found by E-Commerce Buyers</h3>
+<table class="rv d1">
+<thead><tr><th>What Is Missing</th><th>What We Install</th></tr></thead>
+<tbody>
+<tr><td>Founder referrals and word of mouth. No paid, no outbound, no competitive content</td><td>SEO content targeting "feed management agency," "Google Shopping feed optimisation," and "Performance Max feed management." LinkedIn Ads reaching PPC managers at enterprise e-commerce brands. Comparison pages reclaiming brand traffic from Feedonomics</td></tr>
+<tr><td>E-commerce manager searching "managed feed management" does not find FeedSpark</td><td>Google Ads on high intent feed management searches. Vertical comparison pages</td></tr>
+<tr><td>Blog exists but low volume and inconsistent cadence</td><td>Weekly thought leadership on feed optimisation, Google Shopping, and Performance Max</td></tr>
+</tbody>
+</table>
+
+<h3 class="rv d2" style="margin-top:24px">Middle of Funnel: Converting Interest into Conversations</h3>
+<table class="rv d2">
+<thead><tr><th>What Is Missing</th><th>What We Install</th></tr></thead>
+<tbody>
+<tr><td>Good website but only "speak to an expert" form</td><td>Case studies with ROAS improvements and revenue metrics. Gated content ("The Complete Guide to Feed Management for Enterprise E-Commerce")</td></tr>
+<tr><td>Logos exist but no proof. No published ROI metrics</td><td>G2 profile for buyer validation. Email nurture for website inquiries</td></tr>
+<tr><td>No intermediate conversion steps</td><td>Feed audit tools, comparison calculators, downloadable guides</td></tr>
+</tbody>
+</table>
+
+<h3 class="rv d3" style="margin-top:24px">Bottom of Funnel: Closing Enterprise Deals</h3>
+<table class="rv d3">
+<thead><tr><th>What Is Missing</th><th>What We Install</th></tr></thead>
+<tbody>
+<tr><td>No competitive battle cards for sales conversations</td><td>Competitive battle cards (FeedSpark vs Feedonomics, FeedSpark vs DataFeedWatch)</td></tr>
+<tr><td>No documented sales process or collateral</td><td>Sales collateral showing managed service advantage over self serve platforms. Proposal templates with ROI projections</td></tr>
+<tr><td>Andrew closes deals through relationships. Not scalable</td><td>Documented sales process the Head of Commercial Growth can operate independently</td></tr>
+</tbody>
+</table>
+</div></section>
+
+<!-- CARD 12: FULL FUNNEL VIEW -->
+<section class="dark" id="s12"><div class="w">
+<span class="label rv">The Full Picture</span>
+<h2 class="rv">How Every Piece Connects: Full Funnel View</h2>
+<p class="sub rv d1">Every recommendation in this package maps to a stage in FeedSpark's client acquisition journey. Here is how each piece moves e-commerce brands from "never heard of FeedSpark" to "signed and managing feeds."</p>
+
+<div style="margin:28px 0" class="rv d2">
+
+<!-- TOP OF FUNNEL -->
+<div style="padding:24px;border-radius:10px 10px 0 0;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-bottom:0">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+<div style="font-size:1rem;font-weight:800;color:var(--red)">Top of Funnel</div>
+<div style="font-size:.7rem;padding:3px 10px;border-radius:4px;background:rgba(239,68,68,.12);color:var(--red);font-weight:600">GETTING FOUND — 3/10</div>
+</div>
+<p style="font-size:.85rem;color:var(--g4);margin-bottom:12px">E-commerce PPC manager searches "feed management agency." Currently: finds Feedonomics, DataFeedWatch, and Channable. Not FeedSpark.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<div style="padding:10px 12px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);font-size:.8rem">
+<strong style="color:var(--wh);font-size:.75rem">What we install:</strong>
+<ul style="margin:6px 0 0 14px;font-size:.78rem;color:var(--g4)">
+<li>SEO content targeting feed management searches</li>
+<li>LinkedIn Ads for PPC managers and e-commerce leads</li>
+<li>Google Ads on high intent terms</li>
+<li>"FeedSpark vs Feedonomics" comparison page</li>
+</ul>
+</div>
+<div style="padding:10px 12px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);font-size:.8rem">
+<strong style="color:var(--wh);font-size:.75rem">What is missing now:</strong>
+<ul style="margin:6px 0 0 14px;font-size:.78rem;color:var(--g4)">
+<li>No paid media running</li>
+<li>No outbound sales function</li>
+<li>No competitive content</li>
+<li>No G2 or review platform presence</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div style="text-align:center;padding:6px 0;background:var(--dk-s);font-size:.9rem;color:var(--g4)">&#8595;</div>
+
+<!-- MIDDLE OF FUNNEL -->
+<div style="padding:24px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15);border-bottom:0;border-top:0">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+<div style="font-size:1rem;font-weight:800;color:var(--amb)">Middle of Funnel</div>
+<div style="font-size:.7rem;padding:3px 10px;border-radius:4px;background:rgba(245,158,11,.12);color:var(--amb);font-weight:600">CONVERTING INTEREST — 4/10</div>
+</div>
+<p style="font-size:.85rem;color:var(--g4);margin-bottom:12px">Prospect is interested. Needs proof, case studies, and intermediate conversion steps. Currently: logos with no metrics and a "speak to an expert" form.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<div style="padding:10px 12px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);font-size:.8rem">
+<strong style="color:var(--wh);font-size:.75rem">What we install:</strong>
+<ul style="margin:6px 0 0 14px;font-size:.78rem;color:var(--g4)">
+<li>Case studies with ROAS and revenue metrics</li>
+<li>G2 profile for buyer validation</li>
+<li>Gated enterprise feed management guide</li>
+<li>Email nurture for website inquiries</li>
+</ul>
+</div>
+<div style="padding:10px 12px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);font-size:.8rem">
+<strong style="color:var(--wh);font-size:.75rem">What is missing now:</strong>
+<ul style="margin:6px 0 0 14px;font-size:.78rem;color:var(--g4)">
+<li>No published case studies with metrics</li>
+<li>No G2 or Capterra presence</li>
+<li>Contact form is the only conversion path</li>
+<li>No nurture sequences</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div style="text-align:center;padding:6px 0;background:var(--dk-s);font-size:.9rem;color:var(--g4)">&#8595;</div>
+
+<!-- BOTTOM OF FUNNEL -->
+<div style="padding:24px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.12);border-bottom:0;border-top:0">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+<div style="font-size:1rem;font-weight:800;color:var(--grn)">Bottom of Funnel</div>
+<div style="font-size:.7rem;padding:3px 10px;border-radius:4px;background:rgba(34,197,94,.1);color:var(--grn);font-weight:600">CLOSING DEALS — 7/10</div>
+</div>
+<p style="font-size:.85rem;color:var(--g4);margin-bottom:12px">Prospect is engaged. Fully managed service, FeedHero platform, 80% support tickets in 24 hours. The activation layer works when people reach it.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<div style="padding:10px 12px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);font-size:.8rem">
+<strong style="color:var(--wh);font-size:.75rem">What we install:</strong>
+<ul style="margin:6px 0 0 14px;font-size:.78rem;color:var(--g4)">
+<li>Competitive battle cards per competitor</li>
+<li>Sales collateral (managed vs self serve)</li>
+<li>Proposal templates with ROI projections</li>
+<li>Documented sales process</li>
+</ul>
+</div>
+<div style="padding:10px 12px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);font-size:.8rem">
+<strong style="color:var(--wh);font-size:.75rem">What is missing now:</strong>
+<ul style="margin:6px 0 0 14px;font-size:.78rem;color:var(--g4)">
+<li>No competitive battle cards</li>
+<li>No documented sales process</li>
+<li>No sales collateral for new hire</li>
+<li>Andrew closes every deal personally</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div style="text-align:center;padding:6px 0;background:var(--dk-s);font-size:.9rem;color:var(--g4)">&#8595;</div>
+
+<!-- SALE -->
+<div style="padding:24px;border-radius:0 0 10px 10px;background:rgba(255,204,137,.06);border:1px solid rgba(255,204,137,.12);border-top:0">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+<div style="font-size:1rem;font-weight:800;color:var(--ne)">Sale</div>
+<div style="font-size:.7rem;padding:3px 10px;border-radius:4px;background:rgba(255,204,137,.1);color:#b8860b;font-weight:600">RETAIN AND EXPAND</div>
+</div>
+<p style="font-size:.85rem;color:var(--g4);margin-bottom:12px">Client signed and managing feeds. Expand the relationship through additional channels (social feeds, marketplace expansion) and structured upsell triggers.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<div style="padding:10px 12px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);font-size:.8rem">
+<strong style="color:var(--wh);font-size:.75rem">What we install:</strong>
+<ul style="margin:6px 0 0 14px;font-size:.78rem;color:var(--g4)">
+<li>Structured upsell triggers (social, marketplace)</li>
+<li>Client referral programme</li>
+<li>Quarterly business reviews with ROI reporting</li>
+<li>Case study extraction from new wins</li>
+</ul>
+</div>
+<div style="padding:10px 12px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);font-size:.8rem">
+<strong style="color:var(--wh);font-size:.75rem">What is missing now:</strong>
+<ul style="margin:6px 0 0 14px;font-size:.78rem;color:var(--g4)">
+<li>No structured expansion triggers</li>
+<li>No referral programme</li>
+<li>No quarterly ROI reporting</li>
+<li>No case study extraction process</li>
+</ul>
+</div>
+</div>
+</div>
+
+</div>
+
+<p class="tagline rv" style="margin-top:16px">This is how every e-commerce brand moves from "never heard of FeedSpark" to "signed, managing feeds, and expanding channels."</p>
+</div></section>
+
+<!-- CARD 13: COMPETITIVE MAP -->
+<section id="s13"><div class="w">
+<span class="label rv">Competitive Landscape</span>
+<h2 class="rv">Where FeedSpark Stands</h2>
+<div style="overflow-x:auto" class="rv d1">
+<table>
+<thead><tr><th>Capability</th><th style="background:var(--dk)">FeedSpark</th><th>Feedonomics</th><th>DataFeedWatch</th><th>Channable</th></tr></thead>
+<tbody>
+<tr><td><strong>Model</strong></td><td>Fully managed service</td><td>Platform plus managed service</td><td>Self serve DIY</td><td>Self serve plus PPC automation</td></tr>
+<tr><td><strong>Pricing</strong></td><td>Custom (managed service)</td><td>Premium enterprise</td><td>Published (affordable)</td><td>Published</td></tr>
+<tr><td><strong>G2 Presence</strong></td><td>None</td><td>Active with reviews</td><td>Active with reviews</td><td>Active with reviews</td></tr>
+<tr><td><strong>Case Studies</strong></td><td>Logos only</td><td>Detailed with metrics</td><td>Available</td><td>Available</td></tr>
+<tr><td><strong>Comparison Pages</strong></td><td>None</td><td>Has "FeedSpark alternative" page</td><td>Available</td><td>Available</td></tr>
+<tr><td><strong>Content Marketing</strong></td><td>Inconsistent blog</td><td>Active content programme</td><td>Active blog and guides</td><td>Active blog</td></tr>
+<tr><td><strong>Differentiator</strong></td><td>AI plus rules plus human experts</td><td>BigCommerce backing, enterprise</td><td>Price, accessibility</td><td>PPC integration</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout rv d2"><p><strong>The paradox:</strong> FeedSpark has the strongest managed service in the market. "The only truly fully managed feed management agency." But the weakest commercial presence. Feedonomics has BigCommerce resources and detailed case studies. DataFeedWatch has published pricing and G2 reviews. FeedSpark has the best product and the quietest voice.</p></div>
+</div></section>
+
+<!-- CARD 14: THE GAP -->
+<section class="alt" id="s14"><div class="w">
+<span class="label rv">Strategic Opportunity</span>
+<h2 class="rv">The Gap Nobody Else Is Filling</h2>
+<p class="rv d1"><strong>No feed management company has claimed "fully managed" as a category.</strong></p>
+<p class="rv d2">Feedonomics is a platform with managed service options. DataFeedWatch is self serve. Channable is self serve with PPC automation. GoDataFeed is mid market automation. Nobody is defining "managed feed management" as a distinct category, separate from DIY platforms.</p>
+<div class="callout rv d3"><p>FeedSpark already delivers this. 250 billion products, £3.5 billion in spend, 2,500 brands. The proof exists in the delivery. It just needs to be visible, published, and positioned before Feedonomics (a platform pretending to be managed) claims that territory.</p>
+<p>The company that defines "managed feed management" as a category will own the consideration set for every enterprise e-commerce brand that does not want to manage feeds internally. Right now, that company should be FeedSpark.</p></div>
+</div></section>
+
+<!-- CARD 15: 90 DAY PLAN WEEKS 1-6 -->
+<section id="s15"><div class="w">
+<span class="label rv">90 Day Roadmap</span>
+<h2 class="rv">Commercial Launch: Weeks 1 to 6</h2>
+
+<div class="wk rv"><div class="wn">Week 1 <span style="float:right;font-size:.6rem;padding:2px 6px;border-radius:3px;background:rgba(255,97,0,.1);color:var(--or)">FOUNDATION</span></div><h3>Extract Case Study Data</h3><p>Extract case study data from 3 existing clients. Define the metrics that matter: ROAS improvement, revenue uplift, cost per product optimisation, feed error reduction, time saved. Get client approval for named case studies.</p></div>
+
+<div class="wk rv"><div class="wn">Week 2 <span style="float:right;font-size:.6rem;padding:2px 6px;border-radius:3px;background:rgba(255,97,0,.1);color:var(--or)">FOUNDATION</span></div><h3>Launch G2 and Set Up CRM</h3><p>Launch G2 profile. Email 20 existing clients requesting reviews. Set up CRM pipeline stages and forecasting. Define ICP: enterprise e-commerce brands with £100K plus monthly Google Shopping spend, performance agencies with 10 plus retail clients.</p></div>
+
+<div class="wk rv"><div class="wn">Week 3 <span style="float:right;font-size:.6rem;padding:2px 6px;border-radius:3px;background:rgba(245,158,11,.1);color:var(--amb)">BUILD</span></div><h3>FeedSpark vs Feedonomics Page</h3><p>Build "FeedSpark vs Feedonomics" comparison page. Key messaging: managed service vs platform, 18 years domain expertise vs BigCommerce corporate ownership, human experts vs automated tools. Publish first case study on website.</p></div>
+
+<div class="wk rv"><div class="wn">Week 4 <span style="float:right;font-size:.6rem;padding:2px 6px;border-radius:3px;background:rgba(245,158,11,.1);color:var(--amb)">BUILD</span></div><h3>FeedSpark vs DataFeedWatch Page</h3><p>Build "FeedSpark vs DataFeedWatch" comparison page. Key messaging: managed service vs DIY, custom feed architecture vs template feeds, FeedHero platform vs manual rules. Set up email nurture for website inquiries.</p></div>
+
+<div class="wk rv"><div class="wn">Week 5 <span style="float:right;font-size:.6rem;padding:2px 6px;border-radius:3px;background:rgba(34,197,94,.1);color:var(--grn)">LAUNCH</span></div><h3>LinkedIn Outbound Live</h3><p>Launch LinkedIn outbound targeting Head of PPC, Head of Paid Media, and E-commerce Director titles at brands with £100K plus monthly ad spend. 50 personalised connection requests per week. Follow up sequence: connection, value message, case study share.</p></div>
+
+<div class="wk rv"><div class="wn">Week 6 <span style="float:right;font-size:.6rem;padding:2px 6px;border-radius:3px;background:rgba(34,197,94,.1);color:var(--grn)">LAUNCH</span></div><h3>Content Engine and Case Study Activation</h3><p>Publish 4 thought leadership articles: "Why Performance Max Campaigns Fail Without Feed Management," "Self Serve vs Managed Feed Management," "How Feed Quality Affects Google Shopping ROAS," "The Hidden Cost of DIY Feed Management." Activate second case study as conversion asset.</p></div>
+</div></section>
+
+<!-- CARD 16: 90 DAY PLAN WEEKS 7-12 -->
+<section class="alt" id="s16"><div class="w">
+<h2 class="rv">Commercial Launch: Weeks 7 to 12</h2>
+
+<div class="wk rv"><div class="wn">Week 7 <span style="float:right;font-size:.6rem;padding:2px 6px;border-radius:3px;background:rgba(34,197,94,.1);color:var(--grn)">SCALE</span></div><h3>Google Ads Launch</h3><p>Launch Google Ads on "feed management agency," "Google Shopping feed optimisation," "managed feed management." Budget: £2,000 to £3,000 per month. A/B test 3 ad variations.</p></div>
+
+<div class="wk rv"><div class="wn">Week 8 <span style="float:right;font-size:.6rem;padding:2px 6px;border-radius:3px;background:rgba(34,197,94,.1);color:var(--grn)">SCALE</span></div><h3>Sales Collateral and Email Outbound</h3><p>Build sales collateral: competitive battle card (FeedSpark vs Feedonomics, FeedSpark vs DataFeedWatch), one pager showing managed service value proposition, proposal template with ROI projections. Start email outreach to top 50 enterprise e-commerce brands.</p></div>
+
+<div class="wk rv"><div class="wn">Week 9 <span style="float:right;font-size:.6rem;padding:2px 6px;border-radius:3px;background:rgba(245,158,11,.1);color:var(--amb)">OPTIMISE</span></div><h3>30 Day Data Review</h3><p>Review first 30 days of outbound and paid data: leads, conversion rates, cost per acquisition per channel. A/B test comparison pages (headline, proof format, call to action). Identify 3 partnership opportunities with PPC agencies.</p></div>
+
+<div class="wk rv"><div class="wn">Week 10 <span style="float:right;font-size:.6rem;padding:2px 6px;border-radius:3px;background:rgba(255,204,137,.1);color:#b8860b">EXPAND</span></div><h3>Agency Partnership Programme</h3><p>Expand content cadence to 2 articles per week. Build PPC agency partnership programme (white label feed management for agencies). Launch LinkedIn Ads targeting PPC managers.</p></div>
+
+<div class="wk rv"><div class="wn">Week 11 <span style="float:right;font-size:.6rem;padding:2px 6px;border-radius:3px;background:rgba(255,204,137,.1);color:#b8860b">EXPAND</span></div><h3>Agency Outbound</h3><p>Start outbound to PPC agencies. Messaging: "Your clients' Shopping campaigns are only as good as their product feed. We manage the feed so you focus on media buying." 25 agencies per week.</p></div>
+
+<div class="wk rv"><div class="wn">Week 12 <span style="float:right;font-size:.6rem;padding:2px 6px;border-radius:3px;background:rgba(255,204,137,.1);color:#b8860b">HANDOVER</span></div><h3>Pipeline Report and Playbook Handoff</h3><p>Report first quarter commercial metrics to founders: leads, pipeline value, conversion rates, cost per acquisition, content performance. Document the commercial playbook. Set quarterly targets for the Head of Commercial Growth.</p></div>
+
+<div class="qw rv">
+<h3>Quick Wins (Starting Now)</h3>
+<ul>
+<li>Email 20 existing clients requesting G2 reviews. FeedSpark has 2,500 brands. Even 20 reviews puts you in the top 3 for feed management on G2. The social proof already exists in your client base. It just needs to be visible.</li>
+<li>Publish one case study from a current client with specific metrics. Logos are nice. ROAS improvements close deals.</li>
+<li>Build one comparison page: "FeedSpark vs Feedonomics." Feedonomics already has this page targeting you. Your version needs to exist before more prospects see theirs first.</li>
+</ul>
+</div>
+</div></section>
+
+<!-- CARD 17: SAMPLE EMAILS -->
+<section id="s17"><div class="w">
+<span class="label rv">Sample Deliverable</span>
+<h2 class="rv">Cold Email Sequences</h2>
+<p class="rv d1">Andrew, here are sample emails the Head of Commercial Growth could send to enterprise e-commerce brands. These demonstrate what outbound looks like when it is backed by real feed management expertise.</p>
+
+<div style="background:var(--of);border:1px solid #e5e7eb;border-radius:10px;padding:22px;margin:16px 0" class="rv d2">
+<div style="font-size:.68rem;font-weight:700;color:var(--or);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">Email 1: E-Commerce PPC Manager — Trigger Angle</div>
+<p style="font-size:.88rem;font-weight:700;margin-bottom:12px">Subject: 250 billion products, zero pipeline</p>
+<p style="font-size:.85rem;color:var(--g5)">[First Name], FeedSpark has optimised 250 billion products, managed £3.5 billion in Google spend, and serves Selfridges, Samsung, and Harvey Nichols. All of that over 18 years. All through founder led relationships.</p>
+<p style="font-size:.85rem;color:var(--g5)">Three things I noticed while auditing your commercial presence:</p>
+<p style="font-size:.85rem;color:var(--g5);padding-left:16px">1. Feedonomics has a page titled "FeedSpark best alternative" that ranks for your own brand name. FeedSpark has no comparison content<br>2. You have logos from Selfridges and Samsung but no published case study with ROAS or revenue metrics<br>3. No G2 or Capterra listing. E-commerce buyers shortlist vendors on G2 before they ever visit your website</p>
+<p style="font-size:.85rem;color:var(--g5)">I built a commercial growth audit showing what the Head of Commercial Growth needs from day one. Competitive positioning, case study activation, outbound design, and a 90 day plan are already mapped.</p>
+<p style="font-size:.85rem;color:var(--g5);font-weight:600">Worth walking through what your first commercial hire would execute?</p>
+</div>
+
+<div style="background:var(--of);border:1px solid #e5e7eb;border-radius:10px;padding:22px;margin:16px 0" class="rv d3">
+<div style="font-size:.68rem;font-weight:700;color:var(--or);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">Email 2: Agency Head of Paid Media — Friction Angle</div>
+<p style="font-size:.88rem;font-weight:700;margin-bottom:12px">Subject: Feedonomics is telling your story</p>
+<p style="font-size:.85rem;color:var(--g5)">[First Name], if I search "FeedSpark" on Google, one of the top results is a Feedonomics page explaining why they are the better alternative to FeedSpark.</p>
+<p style="font-size:.85rem;color:var(--g5)">Your response to that page right now? Silence. No comparison content. No G2 reviews. No case studies with numbers showing why managed service outperforms self serve platforms.</p>
+<p style="font-size:.85rem;color:var(--g5)">Two things that would change immediately:</p>
+<p style="font-size:.85rem;color:var(--g5);padding-left:16px">1. Three case studies from existing clients with specific ROAS improvements and revenue impact<br>2. A "FeedSpark vs Feedonomics" page that explains why 18 years of managed expertise produces different results than a platform</p>
+<p style="font-size:.85rem;color:var(--g5);font-weight:600">I have a one page breakdown showing how to reclaim your narrative in 90 days. Should I send it over?</p>
+</div>
+</div></section>
+
+<!-- CARD 18: KEY RESULTS -->
+<section class="dark" id="s18"><div class="w">
+<span class="label rv">Expected Results</span>
+<h2 class="rv">What FeedSpark Can Expect</h2>
+
+<h3 class="rv d1" style="color:var(--ne);margin-top:16px">30 Day Results</h3>
+<div class="mc rv d1">
+<div class="mt"><div class="mn">3</div><div class="ml">Case studies extracted with ROAS and revenue metrics</div></div>
+<div class="mt"><div class="mn">G2</div><div class="ml">Profile live with 10 plus reviews from current clients</div></div>
+<div class="mt"><div class="mn">Live</div><div class="ml">"FeedSpark vs Feedonomics" comparison page published</div></div>
+</div>
+
+<h3 class="rv d2" style="color:var(--ne);margin-top:24px">90 Day Results</h3>
+<div class="mc rv d2">
+<div class="mt"><div class="mn">10-15</div><div class="ml">Qualified enterprise conversations per month from outbound</div></div>
+<div class="mt"><div class="mn">Weekly</div><div class="ml">Content engine publishing thought leadership</div></div>
+<div class="mt"><div class="mn">Day 1</div><div class="ml">Head of Commercial Growth has documented playbook</div></div>
+</div>
+
+<h3 class="rv d3" style="color:var(--ne);margin-top:24px">12 Month Results</h3>
+<div class="mc rv d3">
+<div class="mt"><div class="mn">50+</div><div class="ml">G2 reviews, top 3 in feed management category</div></div>
+<div class="mt"><div class="mn">300-500</div><div class="ml">Organic visitors per month from content engine</div></div>
+<div class="mt"><div class="mn">3-4x</div><div class="ml">Pipeline coverage at quarterly target</div></div>
+</div>
+</div></section>
+
+<!-- CARD 19: CASE STUDY -->
+<section id="s19"><div class="w">
+<span class="label rv">Proof</span>
+<h2 class="rv">Case Study: £30M Pipeline in 30 Days</h2>
+<div class="cs rv d1">
+<div class="cs-p ctx"><h3>Context</h3><p>Santander Private Banking needed to reach High Net Worth Individuals for their private banking services. Traditional broad marketing was generating volume but not the right quality.</p></div>
+<div class="cs-p act"><h3>Action</h3><p>I designed a hyper targeted LinkedIn campaign that identified HNWI behavioural signals and served personalised content sequences. The campaign replaced broad targeting with signal based precision. 38 new HNWI clients acquired in 30 days.</p></div>
+<div class="cs-p res"><h3>Result</h3><p><strong>£30 million pipeline generated. 7x the results of the previous approach.</strong> The methodology: identify the exact buyer profile, build content that speaks their language, deliver it through the channel where they actually engage.</p></div>
+</div>
+<div class="callout rv d2"><p><strong>Why this matters for FeedSpark:</strong> Commercial growth follows the same principle. Instead of relying on Andrew's network for every deal, you build targeted outbound reaching PPC managers at enterprise e-commerce brands, agency heads of paid media, and e-commerce directors. The targeting methodology that generated £30 million for Santander is the same framework that would generate enterprise pipeline for FeedSpark. Different industry, same signal based precision.</p></div>
+</div></section>
+
+<!-- CARD 20: GROWTH FEEDBACK LOOPS -->
+<section class="dark" id="s20"><div class="w">
+<span class="label rv">How It Compounds</span>
+<h2 class="rv">The Growth Feedback Loop</h2>
+<p class="sub rv">Not a one time project. A system that gets smarter with every client won.</p>
+
+<div class="mf rv d1">
+<div class="ms"><div class="msn">1</div><h3>Test</h3><p>Launch channel with hypothesis</p></div>
+<div class="ma">&#8594;</div>
+<div class="ms"><div class="msn">2</div><h3>Measure</h3><p>Track every channel per metric</p></div>
+<div class="ma">&#8594;</div>
+<div class="ms"><div class="msn">3</div><h3>Learn</h3><p>Which channel? Which message?</p></div>
+<div class="ma">&#8594;</div>
+<div class="ms"><div class="msn">4</div><h3>Scale</h3><p>3x budget on winners</p></div>
+<div class="ma">&#8594;</div>
+<div class="ms"><div class="msn">5</div><h3>Document</h3><p>Playbook for the next hire</p></div>
+</div>
+
+<div class="callout rv d2" style="margin-top:20px;background:rgba(255,204,137,.04);border-color:rgba(255,204,137,.2)">
+<p style="font-size:.85rem"><strong>Loop 1: Proof Loop.</strong> First published case study with metrics generates credibility. Credibility converts more prospects. More clients create more case studies. Each new case study with specific ROAS improvements accelerates the next deal because the proof is deeper. The 2,500 brands FeedSpark already serves are 2,500 potential case studies waiting to be published.</p>
+</div>
+<div class="callout rv d3" style="margin-top:12px;background:rgba(255,97,0,.04);border-color:rgba(255,97,0,.2)">
+<p style="font-size:.85rem"><strong>Loop 2: Content and Trust Loop.</strong> FeedSpark publishes weekly thought leadership on feed management, Google Shopping, and Performance Max. Content drives organic traffic. Organic traffic generates inquiries. Inquiries that convert become new client stories. New client stories feed the content engine. Meanwhile, G2 reviews compound. Comparison pages rank higher. FeedSpark's voice gets louder while competitors stay static.</p>
+</div>
+<div class="callout rv" style="margin-top:12px;background:rgba(34,197,94,.04);border-color:rgba(34,197,94,.2)">
+<p style="font-size:.85rem"><strong>Loop 3: Test, Measure, Learn, Scale, Document.</strong> Every commercial channel (LinkedIn outbound, Google Ads, content, agency partnerships) is an experiment. Weekly: review data. Monthly: kill what does not work, scale what does. Document the playbook. The Head of Commercial Growth inherits a system with 90 days of data, not a blank page and a list of things to try.</p>
+</div>
+
+<p class="tagline rv" style="margin-top:16px">This is how FeedSpark builds a new business system that compounds. Not by waiting for referrals. By building a commercial engine that learns what works and scales it.</p>
+</div></section>
+
+<!-- CARD 21: FAQ -->
+<section id="s21"><div class="w">
+<span class="label rv">Questions</span>
+<h2 class="rv">Frequently Asked Questions</h2>
+<div class="rv d1">
+<div class="fq"><div class="fq-q">Why is this free?<span class="ic">+</span></div><div class="fq-a">Because the package itself is the proof. If this commercial growth audit gives FeedSpark more clarity than anything you have seen from agencies, that tells you everything about what working together would look like.</div></div>
+<div class="fq"><div class="fq-q">What is the catch?<span class="ic">+</span></div><div class="fq-a">There is no catch. If the audit is useful, I would welcome 15 minutes to discuss implementation. If not, keep the research and go build the commercial function yourselves.</div></div>
+<div class="fq"><div class="fq-q">Do we not just need the Head of Commercial Growth hire?<span class="ic">+</span></div><div class="fq-a">You absolutely need the hire. The question is whether that person spends 3 to 6 months building frameworks from scratch or walks into a functioning system with case studies published, G2 live, comparison pages ranking, and outbound sequences tested.</div></div>
+<div class="fq"><div class="fq-q">How is this different from an agency?<span class="ic">+</span></div><div class="fq-a">Agencies bill monthly and keep the work. I install assets you own. The case studies, the comparison pages, the email sequences, the competitive battle cards, the content calendar. All of it sits on your balance sheet permanently. The Head of Commercial Growth operates it. Not me.</div></div>
+<div class="fq"><div class="fq-q">FeedSpark is a services business. Does this approach work for services?<span class="ic">+</span></div><div class="fq-a">The methodology was built for B2B companies selling considered purchases. Managed feed management is a high trust, high value service where the buyer evaluates multiple vendors before committing. Case studies, competitive positioning, and thought leadership are the exact assets that shorten enterprise sales cycles in professional services.</div></div>
+<div class="fq"><div class="fq-q">We have 2,500 brands. Why not just ask them for referrals?<span class="ic">+</span></div><div class="fq-a">Referrals are powerful and should continue. But referrals are unpredictable. You cannot forecast them. You cannot scale them. And they depend on Andrew's time. The commercial function runs alongside referrals, adding predictable pipeline that does not require the founder's personal involvement.</div></div>
+</div>
+</div></section>
+
+<!-- CARD 22: ABOUT JEAN -->
+<section class="alt" id="s22"><div class="w">
+<span class="label rv">About</span>
+<h2 class="rv">Jean Mundabi Fala</h2>
+<div class="ab rv d1">
+<div class="av">JM</div>
+<div class="ab-i">
+<h3>Jean Mundabi Fala</h3>
+<div class="role">CEO, MDB Growth Capital</div>
+<p style="font-size:.88rem">5 plus years building marketing effectiveness systems at enterprise scale. Santander: £30 to 40 million budget, £30 million Private Banking pipeline, team of 4 marketing specialists. BT: 15% SMB revenue growth, 25% lead acquisition improvement, built the single source of truth used by Marketing, Finance, and Commercial.</p>
+<p style="font-size:.88rem">Today: building go to market systems for B2B companies. Commercial growth playbooks, new business acquisition systems, and conversion architecture that sits on the client's balance sheet permanently.</p>
+<a href="https://linkedin.com/in/jeanmundabi" target="_blank" class="ln-btn">Connect on LinkedIn</a>
+</div>
+</div>
+</div></section>
+
+<!-- CARD 23: THE OFFER -->
+<section class="dark" id="s23"><div class="w">
+<span class="label rv">The Offer</span>
+<h2 class="rv">Everything here is yours to keep.</h2>
+<p class="rv sub">Use the Attraction, Alignment, Activation Diagnostic. Implement the 90 day roadmap. Brief your Head of Commercial Growth with the launch playbook. Hand them the competitive positioning on day one. No strings attached.</p>
+<p class="rv d1" style="margin-top:16px"><strong>If you want to go further:</strong></p>
+<ul class="ol rv d2" style="margin:10px 0 20px">
+<li>Full commercial growth installation: outbound, content, and competitive positioning</li>
+<li>Case study activation (Selfridges, Samsung, Harvey Nichols calibre)</li>
+<li>Competitive battle cards (FeedSpark vs Feedonomics vs DataFeedWatch)</li>
+<li>Narrative reclamation plan (comparison pages, G2 launch)</li>
+<li>Cold email sequences for enterprise e-commerce outbound</li>
+<li>PPC agency partnership programme design</li>
+<li>90 day hands on build with your commercial team</li>
+</ul>
+<p class="rv d3" style="font-size:.85rem;color:var(--g4)">Investment: Let us discuss it on a call. We will show you the economics first.</p>
+</div></section>
+
+<!-- CARD 24: FINAL CTA + CAL.COM -->
+<section class="dark" id="s24" style="padding-bottom:32px"><div class="w">
+<h2 class="rv">2 Options To Get Started</h2>
+<div class="ctg rv d1">
+<div class="ctc"><h3>Just Reply</h3><p>Write back with any questions. I will send you the complete commercial growth architecture. No commitment.</p><a class="btn b-gh" href="mailto:">Reply to Email</a></div>
+<div class="ctc"><h3>Book A Call</h3><p>15 minutes. I will walk you through the audit, the competitive positioning, and the 90 day commercial launch plan.</p><a class="btn b-ne" href="https://cal.com/jean-m-8f4kbr/15min" target="_blank">Book 15 Minutes</a></div>
+</div>
+
+<div style="margin-top:32px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:24px" class="rv d2">
+<h3 style="text-align:center;margin-bottom:16px;color:var(--ne)">Pick a Time That Works</h3>
+<div id="my-cal-inline" style="width:100%;min-height:400px;border-radius:8px;overflow:hidden"></div>
+</div>
+
+<p class="rv d3" style="margin-top:24px;font-size:1rem;line-height:1.6">Andrew, FeedSpark has the domain expertise, the client roster, and the service quality. 18 years of proof sitting in delivery reports that nobody outside your team has ever seen. The commercial function to turn all of that into predictable new business is the missing piece. That function is mapped inside this package. The case study activation plan is ready. The competitive positioning is documented. The Head of Commercial Growth walks into a system, not a blank page.</p>
+<p class="rv" style="margin-top:12px;font-size:1.05rem;font-weight:700">Read it. Then decide.</p>
+<p style="margin-top:16px;font-style:italic;font-size:.85rem;color:var(--g4)">Jean Mundabi Fala<br>MDB Growth Capital</p>
+<p style="margin-top:10px;font-size:.8rem;color:var(--g4)"><strong>PS</strong> — Your Head of Commercial Growth job description lists 6 capability gaps: full cycle sales, pipeline management, content and SEO, outbound programmes, paid media, and team building. This package addresses every one of them with a working playbook. That is either useful to you, or it is not. Either way, FeedSpark keeps the research.</p>
+
+<footer>
+<p style="margin-bottom:4px">Prepared exclusively for Andrew Culpan, CEO and Founder — FeedSpark</p>
+<p>By Jean Mundabi Fala, CEO — MDB Growth Capital</p>
+<p style="margin-top:8px">Strategy and GTM research by Jean Mundabi Fala</p>
+</footer>
+</div></section>
+
+<script>
+// Reveal on scroll
+const o=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('on');o.unobserve(i.target)}})},{threshold:.08,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.rv').forEach(el=>o.observe(el));
+
+// Side nav scroll tracking
+const secs=document.querySelectorAll('section[id]');
+const dots=document.querySelectorAll('.sn a');
+const no=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting){dots.forEach(d=>d.classList.remove('ac'));const d=document.querySelector(`.sn a[href="#${i.target.id}"]`);if(d)d.classList.add('ac')}})},{threshold:.2,rootMargin:'-5% 0px -60% 0px'});
+secs.forEach(s=>no.observe(s));
+
+// FAQ accordion
+document.querySelectorAll('.fq-q').forEach(q=>{q.addEventListener('click',()=>{const f=q.parentElement,w=f.classList.contains('open');document.querySelectorAll('.fq').forEach(x=>x.classList.remove('open'));if(!w)f.classList.add('open')})});
+
+// Video embed (auto-detect when URL is changed from placeholder)
+const ve=document.getElementById('videoEmbed');
+const vu='VIDEO_URL_GOES_HERE';
+if(vu&&vu!=='VIDEO_URL_GOES_HERE'){
+let eu='';
+if(vu.includes('loom.com')){eu=`https://www.loom.com/embed/${vu.split('/').pop().split('?')[0]}`}
+else if(vu.includes('youtube.com')||vu.includes('youtu.be')){const id=vu.includes('youtu.be')?vu.split('/').pop():new URLSearchParams(new URL(vu).search).get('v');eu=`https://www.youtube.com/embed/${id}`}
+else if(vu.includes('vimeo.com')){eu=`https://player.vimeo.com/video/${vu.split('/').pop().split('?')[0]}`}
+else if(vu.includes('tella.tv')){eu=vu.replace('/video/','/embed/')}
+if(eu){ve.innerHTML=`<iframe src="${eu}" style="width:100%;height:100%;border:none;border-radius:12px" allowfullscreen></iframe>`}
+}
+</script>
+
+<!-- Cal.com Embed -->
+<script type="text/javascript">
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", {origin:"https://cal.com"});
+Cal("inline", { elementOrSelector:"#my-cal-inline", calLink: "jean-m-8f4kbr/15min", layout: "month_view" });
+Cal("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
+
+</body>
+</html>
